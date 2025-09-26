@@ -1,0 +1,40 @@
+import { clsx } from 'clsx';
+
+import { Button } from '@/shared';
+import { KiosksData } from '@/shared/lib/kiosks-store';
+
+import s from './kiosk-management.module.scss';
+
+interface Props {
+  kiosk: KiosksData;
+}
+
+export const KioskManagement = ({ kiosk }: Props) => {
+  return (
+    <div className={s.wrapper}>
+      <div className={s.container}>
+        <div className={s.content}>
+          <div className={s.titleWrapper}>
+            <h2 className={s.title}>Kiosk Management</h2>
+            <p className={s.subTitle}>{kiosk.name}</p>
+          </div>
+          <div className={s.codeGenerator}>Code generator</div>
+          <div className={s.defaultLanguage}>Default language</div>
+        </div>
+        <footer className={s.footer}>
+          <Button
+            className={clsx(s.button, s.inactiveBtn)}
+            variant={'secondary'}
+          >
+            Inactive
+          </Button>
+          <Button className={clsx(s.button, s.activeBtn)} variant={'secondary'}>
+            Active
+          </Button>
+        </footer>
+      </div>
+
+      <div className={s.overlay}></div>
+    </div>
+  );
+};

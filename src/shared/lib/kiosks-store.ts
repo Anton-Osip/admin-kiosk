@@ -42,7 +42,7 @@ export const useKiosksStore = create<ModalStore>(set => ({
     set(state => ({
       kiosksData: state.kiosksData.map(kiosk => ({
         ...kiosk,
-        isSelected: kiosk.id === kioskId,
+        isSelected: kiosk.isSelected ? false : kiosk.id === kioskId,
       })),
     }));
   },

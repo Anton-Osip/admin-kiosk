@@ -14,9 +14,9 @@ export const Kiosks = ({ kiosks }: Props) => {
   return (
     <div className={s.kiosks}>
       <h2 className={s.title}>My Kiosks</h2>
-      <h2 className={s.subTitle}>
+      <p className={s.subTitle}>
         in work {activeKiosks} of {totalKiosks}
-      </h2>
+      </p>
       <div className={s.container}>
         {kiosks.map(kiosk => (
           <Kiosk key={kiosk.id} kiosk={kiosk} />
