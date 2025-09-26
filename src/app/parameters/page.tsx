@@ -1,10 +1,9 @@
-import { Header, PhotoSection } from '@/widgets';
+import { Header } from '@/widgets';
 
 export default function Parameters() {
   return (
     <>
-      <Header activeTab="photo" />
-      <PhotoSection />
+      <Header />
     </>
   );
 }
