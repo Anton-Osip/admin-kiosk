@@ -1,0 +1,102 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-8) var(--space-16) var(--space-8) var(--space-8);
+  border-radius: var(--radius-xl);
+  background: #1b1b1b;
+  gap: var(--space-12);
+  height: 76px;
+
+  &:hover .arrow {
+    opacity: 1;
+  }
+}
+
+.iconContainer {
+  width: 60px;
+
+  .active {
+    color: var(--color-accent) !important;
+  }
+
+  .inactive {
+    color: #606060 !important;
+  }
+
+  .error {
+    color: #ff1e00 !important;
+  }
+}
+
+.info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .name {
+    font-size: var(--text-lg);
+    font-weight: var(--font-medium);
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .status {
+    position: relative;
+    padding-left: var(--space-14);
+    font-size: var(--text-base);
+    font-weight: var(--font-medium);
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-tight);
+    color: #606060;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+
+    &::before {
+      content: '';
+      border-radius: 100%;
+      position: absolute;
+      top: 4px;
+      left: 0;
+      width: 10px;
+      height: 10px;
+      background: #606060;
+    }
+
+    &.active {
+      color: var(--color-accent);
+
+      &::before {
+        top: 8px;
+        left: 4px;
+        width: 4px;
+        height: 4px;
+        background: var(--color-accent);
+        box-shadow: 0 0 0 4px rgba(195, 255, 0, 0.2);
+      }
+    }
+
+    &.error {
+      color: #ff1e00;
+
+      &::before {
+        background-size: cover;
+        background: transparent url('../../../../public/cross.svg') center;
+      }
+    }
+  }
+}
+
+.selectedArrow,
+.arrow {
+  transition: opacity 0.3s;
+  transform: rotate(180deg);
+}
+
+.arrow {
+  opacity: 0;
+}

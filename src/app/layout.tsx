@@ -3,7 +3,6 @@ import './globals.scss';
 import type { Metadata } from 'next';
 import React from 'react';
 
-
 type LayoutProps = {
   children: React.ReactNode;
 };
@@ -18,8 +17,9 @@ export default function RootLayout({ children }: LayoutProps) {
     <html lang="en" style={{ height: '100%', overflow: 'hidden' }}>
       <body
         style={{
-          height: '100dvh',
-          background: '#000',
+          height: '100vh',
+          width: '100vw',
+          background: '#101010',
           color: '#FFF',
           overflow: 'hidden',
           position: 'relative',
@@ -29,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps) {
           padding: 0,
         }}
       >
-         {children}
+        {children}
       </body>
     </html>
   );

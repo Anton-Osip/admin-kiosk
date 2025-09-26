@@ -8,7 +8,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
-  padding: var(--space-6);
+  padding: var(--space-96);
   border-radius: var(--radius-full);
 
   &:disabled {
@@ -57,7 +57,7 @@
 
   &.close {
     border-radius: var(--radius-2xl);
-    background: rgba(255,255,255,0.12);
+    background: rgba(255, 255, 255, 0.12);
     color: var(--color-text-primary);
     border: none;
     backdrop-filter: blur(6px);
@@ -70,7 +70,7 @@
 
   /* Sizes */
   &.sm {
-    height: var(--space-12);
+    height: var(--space-48);
     font-size: var(--text-sm);
     padding: var(--space-3) var(--space-5);
   }
@@ -82,7 +82,7 @@
   }
 
   &.lg {
-    padding: var(--space-8);
+    padding: var(--space-32);
     font-size: var(--text-2xl);
     font-weight: var(--font-semibold);
 
@@ -91,14 +91,14 @@
 
   /* Special sizes for close button */
   &.close.sm {
-    width: var(--space-12);
-    height: var(--space-12);
+    width: var(--space-48);
+    height: var(--space-48);
     padding: 0;
   }
 
   &.close.md {
-    width: var(--space-16);
-    height: var(--space-16);
+    width: var(--space-64);
+    height: var(--space-64);
     padding: 0;
   }
 
@@ -142,8 +142,8 @@
 }
 
 .iconButton.md .icon {
-  width: var(--space-6);
-  height: var(--space-6);
+  width: var(--space-96);
+  height: var(--space-96);
 }
 
 .iconButton.lg .icon {
@@ -152,8 +152,8 @@
 }
 
 .close.sm .icon {
-  width: var(--space-6);
-  height: var(--space-6);
+  width: var(--space-96);
+  height: var(--space-96);
 }
 
 .close.md .icon {
@@ -165,4 +165,3 @@
   width: 34px;
   height: 34px;
 }
-

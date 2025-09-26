@@ -11,14 +11,16 @@ interface IconContainerProps {
   className?: string;
 }
 
-export function IconContainer({ 
-  children, 
-  size = 'md', 
+export function IconContainer({
+  children,
+  size = 'md',
   variant = 'default',
-  className 
+  className,
 }: IconContainerProps) {
   return (
-    <div className={`${styles.container} ${styles[size]} ${styles[variant]} ${className || ''}`}>
+    <div
+      className={`${styles.container} ${styles[size]} ${styles[variant]} ${className || ''}`}
+    >
       {children}
     </div>
   );
