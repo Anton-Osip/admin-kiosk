@@ -55,11 +55,23 @@
   }
 
   & .subTitle {
-    color: var(--color-accent);
+
     font-size: var(--text-base);
     font-weight: var(--font-medium);
     line-height: var(--leading-normal);
     letter-spacing: var(--tracking-tight);
+  }
+
+  & .active {
+    color: var(--color-accent);
+  }
+
+  & .inactive {
+    color: #606060;
+  }
+
+  & .error {
+    color: #ff1e00;
   }
 
   .closeButton {

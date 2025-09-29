@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-1);
+  gap: var(--space-4);
   font-family: var(--font-primary), sans-serif;
   font-weight: var(--font-medium);
   cursor: pointer;
@@ -72,13 +72,13 @@
   &.sm {
     height: var(--space-48);
     font-size: var(--text-sm);
-    padding: var(--space-3) var(--space-5);
+    padding: var(--space-12) var(--space-20);
   }
 
   &.md {
     height: 70px;
     font-size: var(--text-base);
-    padding: var(--space-4) var(--space-40);
+    padding: var(--space-16) var(--space-40);
   }
 
   &.lg {
@@ -111,7 +111,7 @@
 
 /* Icon button styles */
 .iconButton {
-  gap: var(--space-3);
+  gap: var(--space-12);
 }
 
 .icon {
@@ -137,8 +137,8 @@
 
 /* Icon sizes based on button size */
 .iconButton.sm .icon {
-  width: var(--space-5);
-  height: var(--space-5);
+  width: var(--space-20);
+  height: var(--space-20);
 }
 
 .iconButton.md .icon {

@@ -5,6 +5,13 @@ import { create } from 'zustand';
 interface ModalStore {
   kiosksData: KiosksData[];
   setSelectedKiosk: (kioskID: string) => void;
+  clearError: (kioskId: string, errorId: string) => void;
+}
+
+export interface ErrorData {
+  id: string;
+  message: string;
+  title: string;
 }
 
 export interface KiosksData {
@@ -13,6 +20,7 @@ export interface KiosksData {
   status: Status;
   isSelected: boolean;
   defaultLanguage: string;
+  error?: ErrorData[];
 }
 
 type Status = 'active' | 'inactive' | 'error';
@@ -46,6 +54,28 @@ export const useKiosksStore = create<ModalStore>(set => ({
       status: 'error',
       isSelected: false,
       defaultLanguage: 'english',
+      error: [
+        {
+          id: 'error 1',
+          message: 'Невозможно продолжить работу',
+          title: 'Error B1',
+        },
+        {
+          id: 'error 2',
+          message: 'Невозможно продолжить работу',
+          title: 'Error B2',
+        },
+        {
+          id: 'error 3',
+          message: 'Невозможно продолжить работу',
+          title: 'Error B3',
+        },
+        {
+          id: 'error 4',
+          message: 'Невозможно продолжить работу',
+          title: 'Error B4',
+        },
+      ],
     },
     {
       id: 'Kiosk №5',
@@ -81,8 +111,27 @@ export const useKiosksStore = create<ModalStore>(set => ({
     set(state => ({
       kiosksData: state.kiosksData.map(kiosk => ({
         ...kiosk,
-        isSelected: kiosk.id === kioskId,
+        isSelected: kiosk.isSelected ? false : kiosk.id === kioskId,
       })),
+    }));
+  },
+
+  clearError: (kioskId: string, errorId: string) => {
+    set(state => ({
+      kiosksData: state.kiosksData.map(kiosk => {
+        if (kiosk.id === kioskId && kiosk.error) {
+          const filteredErrors = kiosk.error.filter(
+            error => error.id !== errorId
+          );
+
+          return {
+            ...kiosk,
+            error: filteredErrors.length > 0 ? filteredErrors : undefined,
+          };
+        }
+
+        return kiosk;
+      }),
     }));
   },
 }));

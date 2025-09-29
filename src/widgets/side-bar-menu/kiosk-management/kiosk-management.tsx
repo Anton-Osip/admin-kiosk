@@ -2,8 +2,8 @@ import { clsx } from 'clsx';
 
 import { Button } from '@/shared';
 import ArrowLeft from '@/shared/assets/arrow-left';
-import { KiosksData } from '@/shared/lib/kiosks-store';
-import { CodeGenerator, LanguageSwitcher } from '@/widgets';
+import { KiosksData, useKiosksStore } from '@/shared/lib/kiosks-store';
+import { CodeGenerator, ErrorBanners, LanguageSwitcher } from '@/widgets';
 
 import s from './kiosk-management.module.scss';
 
@@ -12,6 +12,16 @@ interface Props {
 }
 
 export const KioskManagement = ({ kiosk }: Props) => {
+  const { setSelectedKiosk, clearError } = useKiosksStore();
+
+  const closeKioskManagement = () => {
+    setSelectedKiosk(kiosk.id);
+  };
+
+  const clearErrorHandler = (errorId: string) => {
+    clearError(kiosk.id, errorId);
+  };
+
   return (
     <div className={s.wrapper}>
       <div className={s.container}>
@@ -19,15 +29,26 @@ export const KioskManagement = ({ kiosk }: Props) => {
           <div className={s.titleWrapper}>
             <div className={s.titleContent}>
               <h2 className={s.title}>Kiosk Management</h2>
-              <p className={s.subTitle}>{kiosk.name}</p>
+              <p className={clsx(s.subTitle, s[kiosk.status])}>{kiosk.name}</p>
             </div>
-            <Button variant={'ghost'} className={s.closeButton}>
+            <Button
+              onClick={closeKioskManagement}
+              variant={'ghost'}
+              className={s.closeButton}
+            >
               <ArrowLeft />
             </Button>
           </div>
           <div className={s.box}>
             <CodeGenerator />
-            <LanguageSwitcher language={kiosk.defaultLanguage} />
+            {kiosk.status === 'error' && kiosk.error ? (
+              <ErrorBanners
+                errors={kiosk.error}
+                clearError={clearErrorHandler}
+              />
+            ) : (
+              <LanguageSwitcher language={kiosk.defaultLanguage} />
+            )}
           </div>
         </div>
         <footer className={s.footer}>
