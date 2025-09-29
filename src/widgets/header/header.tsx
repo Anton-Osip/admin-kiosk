@@ -23,6 +23,7 @@ export function Header() {
     changeOrderNumber,
     changeCustomerDetails,
   } = useLocalStore();
+
   const changeOrdersTabHandler = (value: string) => {
     changeOrdersTab(value as OrdersTab);
   };
