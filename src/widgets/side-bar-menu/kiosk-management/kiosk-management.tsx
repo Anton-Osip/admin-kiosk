@@ -3,8 +3,7 @@ import { clsx } from 'clsx';
 import { Button } from '@/shared';
 import ArrowLeft from '@/shared/assets/arrow-left';
 import { KiosksData } from '@/shared/lib/kiosks-store';
-import { CodeGenerator } from '@/widgets';
-import { LanguageSwitcher } from '@/widgets/language-switcher/language-switcher';
+import { CodeGenerator, LanguageSwitcher } from '@/widgets';
 
 import s from './kiosk-management.module.scss';
 
