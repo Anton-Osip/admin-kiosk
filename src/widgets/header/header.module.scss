@@ -1,8 +1,24 @@
-.header{
+.header {
   padding-bottom: var(--space-25);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.tabs{
-  width: 282px;
 
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-11);
+  max-width: 1044px;
+  width: 100%;
+}
+
+.tabs {
+  width: 100%;
+  max-width: 282px;
+}
+
+.input {
+  max-width: 370px;
 }

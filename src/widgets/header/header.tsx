@@ -1,6 +1,6 @@
 'use client';
 
-import { Tabs } from '@/shared';
+import { Input, Tabs } from '@/shared';
 import { OrdersTab, useLocalStore } from '@/shared/lib/local-store';
 
 import s from './header.module.scss';
@@ -17,20 +17,47 @@ const item = [
 ];
 
 export function Header() {
-  const { activeOrdersTab, changeOrdersTab } = useLocalStore();
-
+  const {
+    activeOrdersTab,
+    changeOrdersTab,
+    changeOrderNumber,
+    changeCustomerDetails,
+  } = useLocalStore();
   const changeOrdersTabHandler = (value: string) => {
     changeOrdersTab(value as OrdersTab);
   };
 
+  const changeOrdersNumberHandler = (value: string) => {
+    changeOrderNumber(Number(value));
+  };
+
+  const changeCustomerDetailsHandler = (value: string) => {
+    changeCustomerDetails(value);
+  };
+
   return (
     <header className={s.header}>
-      <Tabs
-        className={s.tabs}
-        items={item}
-        defaultItem={activeOrdersTab}
-        changeTabs={changeOrdersTabHandler}
-      />
+      <div className={s.controls}>
+        <Tabs
+          className={s.tabs}
+          items={item}
+          defaultItem={activeOrdersTab}
+          changeTabs={changeOrdersTabHandler}
+        />
+        <Input
+          className={s.input}
+          type="number"
+          showImageButton={true}
+          placeholder={'Input Order Number'}
+          sendInput={changeOrdersNumberHandler}
+        />
+        <Input
+          className={s.input}
+          showImageButton={true}
+          placeholder={'Enter Customer Details'}
+          sendInput={changeCustomerDetailsHandler}
+        />
+      </div>
     </header>
   );
 }
