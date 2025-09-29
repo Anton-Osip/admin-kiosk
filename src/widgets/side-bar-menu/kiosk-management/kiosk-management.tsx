@@ -1,7 +1,10 @@
 import { clsx } from 'clsx';
 
 import { Button } from '@/shared';
+import ArrowLeft from '@/shared/assets/arrow-left';
 import { KiosksData } from '@/shared/lib/kiosks-store';
+import { CodeGenerator } from '@/widgets';
+import { LanguageSwitcher } from '@/widgets/language-switcher/language-switcher';
 
 import s from './kiosk-management.module.scss';
 
@@ -15,11 +18,18 @@ export const KioskManagement = ({ kiosk }: Props) => {
       <div className={s.container}>
         <div className={s.content}>
           <div className={s.titleWrapper}>
-            <h2 className={s.title}>Kiosk Management</h2>
-            <p className={s.subTitle}>{kiosk.name}</p>
+            <div className={s.titleContent}>
+              <h2 className={s.title}>Kiosk Management</h2>
+              <p className={s.subTitle}>{kiosk.name}</p>
+            </div>
+            <Button variant={'ghost'} className={s.closeButton}>
+              <ArrowLeft />
+            </Button>
           </div>
-          <div className={s.codeGenerator}>Code generator</div>
-          <div className={s.defaultLanguage}>Default language</div>
+          <div className={s.box}>
+            <CodeGenerator />
+            <LanguageSwitcher language={kiosk.defaultLanguage} />
+          </div>
         </div>
         <footer className={s.footer}>
           <Button
