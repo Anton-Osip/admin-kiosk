@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2px;
+  padding: var(--space-4);
+  border-radius: 18px;
+  background: rgba(27, 27, 27, 1);
+
+  & .tabsItem {
+    width: 100%;
+    height: 52px;
+    padding: 18px 22px 18px 22px;
+    border-radius: 14px;
+    background: transparent;
+  }
+
+  & .activeItem {
+    background: var(--color-text-primary);
+    color: var(--color-background);
+  }
+}
+
+

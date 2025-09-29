@@ -1,11 +1,36 @@
 'use client';
 
-import React from 'react';
+import { Tabs } from '@/shared';
+import { OrdersTab, useLocalStore } from '@/shared/lib/local-store';
 
-interface HeaderProps {
-  className?: string;
-}
+import s from './header.module.scss';
 
-export function Header({ className }: HeaderProps) {
-  return <header>header</header>;
+const item = [
+  {
+    name: 'new',
+    title: 'New Orders',
+  },
+  {
+    name: 'all',
+    title: 'All Orders',
+  },
+];
+
+export function Header() {
+  const { activeOrdersTab, changeOrdersTab } = useLocalStore();
+
+  const changeOrdersTabHandler = (value: string) => {
+    changeOrdersTab(value as OrdersTab);
+  };
+
+  return (
+    <header className={s.header}>
+      <Tabs
+        className={s.tabs}
+        items={item}
+        defaultItem={activeOrdersTab}
+        changeTabs={changeOrdersTabHandler}
+      />
+    </header>
+  );
 }

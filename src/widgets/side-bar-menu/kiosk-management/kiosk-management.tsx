@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 
-import { Button } from '@/shared';
+import { Button, Tabs } from '@/shared';
 import ArrowLeft from '@/shared/assets/arrow-left';
 import { KiosksData, Status, useKiosksStore } from '@/shared/lib/kiosks-store';
 import { CodeGenerator, ErrorBanners, LanguageSwitcher } from '@/widgets';
@@ -12,6 +12,11 @@ interface Props {
   toggleDefaultLanguage: () => void;
 }
 
+const tabsItem = [
+  { name: 'inactive', title: 'Inactive' },
+  { name: 'active', title: 'Active' },
+];
+
 export const KioskManagement = ({ kiosk, toggleDefaultLanguage }: Props) => {
   const { setSelectedKiosk, clearError, changeStatus } = useKiosksStore();
 
@@ -22,8 +27,8 @@ export const KioskManagement = ({ kiosk, toggleDefaultLanguage }: Props) => {
   const clearErrorHandler = (errorId: string) => {
     clearError(kiosk.id, errorId);
   };
-  const changeStatusHandler = (status: Status) => {
-    changeStatus(kiosk.id, status);
+  const changeStatusHandler = (value: string) => {
+    changeStatus(kiosk.id, value as Status);
   };
 
   return (
@@ -58,28 +63,12 @@ export const KioskManagement = ({ kiosk, toggleDefaultLanguage }: Props) => {
             )}
           </div>
         </div>
-        <footer className={s.footer}>
-          <Button
-            className={clsx(
-              s.button,
-              kiosk.status === 'inactive' ? s.activeBtn : s.inactiveBtn
-            )}
-            variant={'secondary'}
-            onClick={() => changeStatusHandler('inactive')}
-          >
-            Inactive
-          </Button>
-          <Button
-            className={clsx(
-              s.button,
-              kiosk.status === 'active' ? s.activeBtn : s.inactiveBtn
-            )}
-            variant={'secondary'}
-            onClick={() => changeStatusHandler('active')}
-          >
-            Active
-          </Button>
-        </footer>
+        <Tabs
+          className={s.tabs}
+          items={tabsItem}
+          defaultItem={kiosk.status}
+          changeTabs={changeStatusHandler}
+        />
       </div>
 
       <div className={s.overlay}></div>
