@@ -1,6 +1,6 @@
 'use client';
 
-import { Header, SideBarMenu } from '@/widgets';
+import { Header, Orders, SideBarMenu } from '@/widgets';
 
 import s from './page.module.scss';
 
@@ -10,6 +10,7 @@ export default function Home() {
       <SideBarMenu />
       <div className={s.content}>
         <Header />
+        <Orders />
       </div>
     </div>
   );

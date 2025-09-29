@@ -1,0 +1,28 @@
+.container {
+  padding: var(--space-50) var(--space-130) 0;
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-16);
+  margin-bottom: var(--space-25);
+}
+
+.title {
+  font-size: var(--text-5xl);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-tight);
+}
+
+.subtitle {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-tight);
+
+  & span {
+    opacity: 0.5;
+  }
+}
