@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  min-width: 176px;
+}
+
+.title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: 2px;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-18);
+}
+
+.stat {
+  color: var(--color-accent);
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-tight);
+}
+

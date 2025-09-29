@@ -2,6 +2,7 @@
 
 import { Input, Tabs } from '@/shared';
 import { OrdersTab, useLocalStore } from '@/shared/lib/local-store';
+import { OrdersSummary } from '@/widgets';
 
 import s from './header.module.scss';
 
@@ -59,6 +60,7 @@ export function Header() {
           sendInput={changeCustomerDetailsHandler}
         />
       </div>
+      <OrdersSummary />
     </header>
   );
 }

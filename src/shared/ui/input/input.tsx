@@ -38,18 +38,22 @@ export const Input = ({
 
   const onKeyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (type === 'number') {
-      // Разрешаем: цифры, Backspace, Delete, Tab, Escape, Enter, стрелки
       const allowedKeys = [
-        'Backspace', 'Delete', 'Tab', 'Escape', 'Enter',
-        'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'
+        'Backspace',
+        'Delete',
+        'Tab',
+        'Escape',
+        'Enter',
+        'ArrowLeft',
+        'ArrowRight',
+        'ArrowUp',
+        'ArrowDown',
       ];
-      
-      // Разрешаем Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X, Ctrl+Z
+
       if (event.ctrlKey || event.metaKey) {
         return;
       }
-      
-      // Если нажата не цифра и не разрешенная клавиша
+
       if (!/[0-9]/.test(event.key) && !allowedKeys.includes(event.key)) {
         event.preventDefault();
       }
