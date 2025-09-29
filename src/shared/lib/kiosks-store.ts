@@ -4,6 +4,8 @@ import { create } from 'zustand';
 
 interface ModalStore {
   kiosksData: KiosksData[];
+  defaultLanguageIsOpen: boolean;
+  setDefaultLanguageIsOpen: (value?: boolean) => void;
   setSelectedKiosk: (kioskID: string) => void;
   clearError: (kioskId: string, errorId: string) => void;
   changeLanguage: (kioskId: string, language: string) => void;
@@ -33,7 +35,7 @@ export const useKiosksStore = create<ModalStore>(set => ({
       id: 'Kiosk №1',
       name: 'Kiosk №1',
       status: 'active',
-      isSelected: true,
+      isSelected: false,
       defaultLanguage: 'english',
     },
     {
@@ -103,6 +105,7 @@ export const useKiosksStore = create<ModalStore>(set => ({
       defaultLanguage: 'english',
     },
   ],
+  defaultLanguageIsOpen: false,
 
   setSelectedKiosk: (kioskId: string) => {
     set(state => ({
@@ -110,6 +113,7 @@ export const useKiosksStore = create<ModalStore>(set => ({
         ...kiosk,
         isSelected: kiosk.isSelected ? false : kiosk.id === kioskId,
       })),
+      defaultLanguageIsOpen: false,
     }));
   },
 
@@ -148,5 +152,8 @@ export const useKiosksStore = create<ModalStore>(set => ({
         status: kiosk.id === kioskId ? status : kiosk.status,
       })),
     }));
+  },
+  setDefaultLanguageIsOpen: value => {
+    set({ defaultLanguageIsOpen: value });
   },
 }));
