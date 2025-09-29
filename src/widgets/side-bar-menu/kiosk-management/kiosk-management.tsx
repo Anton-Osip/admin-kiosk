@@ -2,17 +2,18 @@ import { clsx } from 'clsx';
 
 import { Button } from '@/shared';
 import ArrowLeft from '@/shared/assets/arrow-left';
-import { KiosksData, useKiosksStore } from '@/shared/lib/kiosks-store';
+import { KiosksData, Status, useKiosksStore } from '@/shared/lib/kiosks-store';
 import { CodeGenerator, ErrorBanners, LanguageSwitcher } from '@/widgets';
 
 import s from './kiosk-management.module.scss';
 
 interface Props {
   kiosk: KiosksData;
+  toggleDefaultLanguage: () => void;
 }
 
-export const KioskManagement = ({ kiosk }: Props) => {
-  const { setSelectedKiosk, clearError } = useKiosksStore();
+export const KioskManagement = ({ kiosk, toggleDefaultLanguage }: Props) => {
+  const { setSelectedKiosk, clearError, changeStatus } = useKiosksStore();
 
   const closeKioskManagement = () => {
     setSelectedKiosk(kiosk.id);
@@ -20,6 +21,9 @@ export const KioskManagement = ({ kiosk }: Props) => {
 
   const clearErrorHandler = (errorId: string) => {
     clearError(kiosk.id, errorId);
+  };
+  const changeStatusHandler = (status: Status) => {
+    changeStatus(kiosk.id, status);
   };
 
   return (
@@ -47,18 +51,32 @@ export const KioskManagement = ({ kiosk }: Props) => {
                 clearError={clearErrorHandler}
               />
             ) : (
-              <LanguageSwitcher language={kiosk.defaultLanguage} />
+              <LanguageSwitcher
+                language={kiosk.defaultLanguage}
+                toggleDefaultLanguage={toggleDefaultLanguage}
+              />
             )}
           </div>
         </div>
         <footer className={s.footer}>
           <Button
-            className={clsx(s.button, s.inactiveBtn)}
+            className={clsx(
+              s.button,
+              kiosk.status === 'inactive' ? s.activeBtn : s.inactiveBtn
+            )}
             variant={'secondary'}
+            onClick={() => changeStatusHandler('inactive')}
           >
             Inactive
           </Button>
-          <Button className={clsx(s.button, s.activeBtn)} variant={'secondary'}>
+          <Button
+            className={clsx(
+              s.button,
+              kiosk.status === 'active' ? s.activeBtn : s.inactiveBtn
+            )}
+            variant={'secondary'}
+            onClick={() => changeStatusHandler('active')}
+          >
             Active
           </Button>
         </footer>

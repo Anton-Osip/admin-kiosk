@@ -6,6 +6,8 @@ interface ModalStore {
   kiosksData: KiosksData[];
   setSelectedKiosk: (kioskID: string) => void;
   clearError: (kioskId: string, errorId: string) => void;
+  changeLanguage: (kioskId: string, language: string) => void;
+  changeStatus: (kioskId: string, status: Status) => void;
 }
 
 export interface ErrorData {
@@ -23,7 +25,7 @@ export interface KiosksData {
   error?: ErrorData[];
 }
 
-type Status = 'active' | 'inactive' | 'error';
+export type Status = 'active' | 'inactive' | 'error';
 
 export const useKiosksStore = create<ModalStore>(set => ({
   kiosksData: [
@@ -69,11 +71,6 @@ export const useKiosksStore = create<ModalStore>(set => ({
           id: 'error 3',
           message: 'Невозможно продолжить работу',
           title: 'Error B3',
-        },
-        {
-          id: 'error 4',
-          message: 'Невозможно продолжить работу',
-          title: 'Error B4',
         },
       ],
     },
@@ -127,11 +124,29 @@ export const useKiosksStore = create<ModalStore>(set => ({
           return {
             ...kiosk,
             error: filteredErrors.length > 0 ? filteredErrors : undefined,
+            status: filteredErrors.length > 0 ? 'error' : 'inactive',
           };
         }
 
         return kiosk;
       }),
+    }));
+  },
+  changeLanguage: (kioskId: string, language: string) => {
+    set(state => ({
+      kiosksData: state.kiosksData.map(kiosk => ({
+        ...kiosk,
+        defaultLanguage:
+          kiosk.id === kioskId ? language : kiosk.defaultLanguage,
+      })),
+    }));
+  },
+  changeStatus: (kioskId: string, status: Status) => {
+    set(state => ({
+      kiosksData: state.kiosksData.map(kiosk => ({
+        ...kiosk,
+        status: kiosk.id === kioskId ? status : kiosk.status,
+      })),
     }));
   },
 }));
