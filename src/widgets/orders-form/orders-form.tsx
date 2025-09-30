@@ -1,6 +1,6 @@
 import { Button, Input, Select } from '@/shared';
 
-import s from './customer-inputs.module.scss';
+import s from './orders-form.module.scss';
 
 const statusSelect = [
   {
@@ -32,9 +32,9 @@ const kiosksSelect = [
   },
 ];
 
-export const CustomerInputs = () => {
+export const OrdersForm = () => {
   return (
-    <div className={s.container}>
+    <form className={s.container}>
       <Input placeholder={'Name'} />
       <Input placeholder={'Customer Details'} />
       <Select placeholder={'Status'} options={statusSelect} allowClear={true} />
@@ -47,6 +47,6 @@ export const CustomerInputs = () => {
       <Button size={'lg'} className={s.submitBtn}>
         Search
       </Button>
-    </div>
+    </form>
   );
 };

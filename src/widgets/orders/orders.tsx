@@ -1,5 +1,5 @@
 import { useLocalStore } from '@/shared/lib/local-store';
-import { CustomerInputs } from '@/widgets';
+import { OrdersForm } from '@/widgets';
 
 import s from './orders.module.scss';
 
@@ -18,7 +18,7 @@ export const Orders = () => {
           </span>
         )}
       </div>
-      <CustomerInputs />
+      {activeOrdersTab === 'all' && <OrdersForm />}
     </div>
   );
 };
