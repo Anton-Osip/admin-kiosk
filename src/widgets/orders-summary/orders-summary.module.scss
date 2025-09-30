@@ -3,6 +3,8 @@
   align-items: center;
   gap: var(--space-10);
   min-width: 176px;
+  position: relative;
+  z-index: 200;
 }
 
 .title {

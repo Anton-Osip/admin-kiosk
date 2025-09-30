@@ -5,7 +5,7 @@ import { create } from 'zustand';
 
 import image from '../../../public/orderImage.png';
 
-interface OrdersData {
+export interface OrdersData {
   number: number;
   name: string;
   phoneNumber: string;
@@ -14,13 +14,16 @@ interface OrdersData {
   kioskNumber: number;
   status: 'not printed' | 'printed';
   imageURL: StaticImageData;
+  isSelected: boolean;
+  email: string;
 }
 
 interface OrdersStore {
   ordersData: OrdersData[];
+  setSelected: (id: number) => void;
 }
 
-export const useKiosksStore = create<OrdersStore>(() => ({
+export const useOrdersStore = create<OrdersStore>(set => ({
   ordersData: [
     {
       number: 430,
@@ -31,6 +34,8 @@ export const useKiosksStore = create<OrdersStore>(() => ({
       kioskNumber: 1,
       status: 'not printed',
       imageURL: image,
+      isSelected: false,
+      email: 'qweqw@gmail.com',
     },
     {
       number: 429,
@@ -41,6 +46,8 @@ export const useKiosksStore = create<OrdersStore>(() => ({
       kioskNumber: 1,
       status: 'printed',
       imageURL: image,
+      isSelected: false,
+      email: 'qweqw@gmail.com',
     },
     {
       number: 428,
@@ -51,6 +58,8 @@ export const useKiosksStore = create<OrdersStore>(() => ({
       kioskNumber: 1,
       status: 'not printed',
       imageURL: image,
+      isSelected: false,
+      email: 'qweqw@gmail.com',
     },
     {
       number: 427,
@@ -61,6 +70,8 @@ export const useKiosksStore = create<OrdersStore>(() => ({
       kioskNumber: 1,
       status: 'not printed',
       imageURL: image,
+      isSelected: false,
+      email: 'qweqw@gmail.com',
     },
     {
       number: 426,
@@ -71,6 +82,8 @@ export const useKiosksStore = create<OrdersStore>(() => ({
       kioskNumber: 1,
       status: 'printed',
       imageURL: image,
+      isSelected: false,
+      email: 'qweqw@gmail.com',
     },
     {
       number: 425,
@@ -81,6 +94,8 @@ export const useKiosksStore = create<OrdersStore>(() => ({
       kioskNumber: 1,
       status: 'not printed',
       imageURL: image,
+      isSelected: false,
+      email: 'qweqw@gmail.com',
     },
     {
       number: 424,
@@ -91,6 +106,8 @@ export const useKiosksStore = create<OrdersStore>(() => ({
       kioskNumber: 1,
       status: 'not printed',
       imageURL: image,
+      isSelected: false,
+      email: 'qweqw@gmail.com',
     },
     {
       number: 423,
@@ -101,6 +118,8 @@ export const useKiosksStore = create<OrdersStore>(() => ({
       kioskNumber: 1,
       status: 'not printed',
       imageURL: image,
+      isSelected: false,
+      email: 'qweqw@gmail.com',
     },
     {
       number: 422,
@@ -111,6 +130,8 @@ export const useKiosksStore = create<OrdersStore>(() => ({
       kioskNumber: 1,
       status: 'not printed',
       imageURL: image,
+      isSelected: false,
+      email: 'qweqw@gmail.com',
     },
     {
       number: 421,
@@ -121,6 +142,8 @@ export const useKiosksStore = create<OrdersStore>(() => ({
       kioskNumber: 1,
       status: 'not printed',
       imageURL: image,
+      isSelected: false,
+      email: 'qweqw@gmail.com',
     },
     {
       number: 420,
@@ -131,6 +154,8 @@ export const useKiosksStore = create<OrdersStore>(() => ({
       kioskNumber: 1,
       status: 'printed',
       imageURL: image,
+      isSelected: false,
+      email: 'qweqw@gmail.com',
     },
     {
       number: 419,
@@ -141,6 +166,8 @@ export const useKiosksStore = create<OrdersStore>(() => ({
       kioskNumber: 1,
       status: 'not printed',
       imageURL: image,
+      isSelected: false,
+      email: 'qweqw@gmail.com',
     },
     {
       number: 418,
@@ -151,6 +178,8 @@ export const useKiosksStore = create<OrdersStore>(() => ({
       kioskNumber: 1,
       status: 'not printed',
       imageURL: image,
+      isSelected: false,
+      email: 'qweqw@gmail.com',
     },
     {
       number: 417,
@@ -161,6 +190,8 @@ export const useKiosksStore = create<OrdersStore>(() => ({
       kioskNumber: 1,
       status: 'not printed',
       imageURL: image,
+      isSelected: false,
+      email: 'qweqw@gmail.com',
     },
     {
       number: 416,
@@ -171,6 +202,16 @@ export const useKiosksStore = create<OrdersStore>(() => ({
       kioskNumber: 1,
       status: 'not printed',
       imageURL: image,
+      isSelected: false,
+      email: 'qweqw@gmail.com',
     },
   ],
+  setSelected: id => {
+    set(state => ({
+      ordersData: state.ordersData.map(o => ({
+        ...o,
+        isSelected: o.isSelected ? false : o.number === id,
+      })),
+    }));
+  },
 }));

@@ -2,6 +2,7 @@ export { CodeGenerator } from './code-generator/code-generator';
 export { ErrorBanners } from './error-banners/error-banners';
 export { Header } from './header/header';
 export { LanguageSwitcher } from './language-switcher/language-switcher';
+export { ModalOrder } from './modal-order/modal-order';
 export { Orders } from './orders/orders';
 export { OrdersForm } from './orders-form/orders-form';
 export { OrdersSummary } from './orders-summary/orders-summary';

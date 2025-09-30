@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/shared';
-import { useKiosksStore } from '@/shared/lib/oreders-store';
+import { useOrdersStore } from '@/shared/lib/oreders-store';
 
 import s from './table-order.module.scss';
 
@@ -19,7 +19,10 @@ interface Props {
 }
 
 export const TableOrder = ({ className, tableBodyClassName }: Props) => {
-  const { ordersData } = useKiosksStore();
+  const { ordersData, setSelected } = useOrdersStore();
+  const setSelectedHandler = (id: number) => {
+    setSelected(id);
+  };
 
   return (
     <Table className={clsx(className ?? className)}>
@@ -37,7 +40,7 @@ export const TableOrder = ({ className, tableBodyClassName }: Props) => {
       </TableHeader>
       <TableBody className={clsx(tableBodyClassName ?? tableBodyClassName)}>
         {ordersData.map(o => (
-          <TableRow key={o.number}>
+          <TableRow key={o.number} onClick={() => setSelectedHandler(o.number)}>
             <TableCell>
               <span className={s.symbol}>№</span> {o.number}
             </TableCell>

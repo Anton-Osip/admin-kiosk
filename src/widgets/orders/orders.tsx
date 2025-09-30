@@ -2,12 +2,15 @@ import { clsx } from 'clsx';
 
 import { DateSwitcher } from '@/shared';
 import { useLocalStore } from '@/shared/lib/local-store';
-import { OrdersForm, TableOrder } from '@/widgets';
+import { useOrdersStore } from '@/shared/lib/oreders-store';
+import { ModalOrder, OrdersForm, TableOrder } from '@/widgets';
 
 import s from './orders.module.scss';
 
 export const Orders = () => {
   const { activeOrdersTab } = useLocalStore();
+  const { ordersData } = useOrdersStore();
+  const selectedOrder = ordersData.filter(order => order.isSelected)[0];
 
   return (
     <div className={s.container}>
@@ -33,6 +36,7 @@ export const Orders = () => {
       {activeOrdersTab === 'all' && (
         <DateSwitcher className={s.dateSwitcherWrapper} />
       )}
+      {selectedOrder && <ModalOrder order={selectedOrder} />}
     </div>
   );
 };
