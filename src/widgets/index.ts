@@ -3,6 +3,7 @@ export { ErrorBanners } from './error-banners/error-banners';
 export { Header } from './header/header';
 export { LanguageSwitcher } from './language-switcher/language-switcher';
 export { Orders } from './orders/orders';
+export { OrdersForm } from './orders-form/orders-form';
 export { OrdersSummary } from './orders-summary/orders-summary';
 export { SideBarMenu } from './side-bar-menu/side-bar-menu';
-export { OrdersForm } from '@/widgets/orders-form/orders-form';
+export { TableOrder } from './table-orders/table-order';

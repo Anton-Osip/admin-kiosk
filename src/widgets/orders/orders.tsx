@@ -1,5 +1,7 @@
+import { clsx } from 'clsx';
+
 import { useLocalStore } from '@/shared/lib/local-store';
-import { OrdersForm } from '@/widgets';
+import { OrdersForm, TableOrder } from '@/widgets';
 
 import s from './orders.module.scss';
 
@@ -19,6 +21,14 @@ export const Orders = () => {
         )}
       </div>
       {activeOrdersTab === 'all' && <OrdersForm />}
+      <TableOrder
+        tableBodyClassName={clsx(
+          activeOrdersTab === 'all' ? s.tableBodyAll : s.tableBody
+        )}
+        className={clsx(
+          activeOrdersTab === 'all' ? s.tableSpace70 : s.tableSpace50
+        )}
+      />
     </div>
   );
 };

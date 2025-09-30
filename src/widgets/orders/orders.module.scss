@@ -1,6 +1,9 @@
 .container {
   max-width: 1520px;
   padding: var(--space-50) var(--space-130) 0;
+  @media (max-width: 1780px) {
+    padding: var(--space-50) 0 0;
+  }
 }
 
 .titleWrapper {
@@ -27,3 +30,24 @@
     opacity: 0.5;
   }
 }
+
+.tableBodyAll {
+  overflow-y: auto;
+  max-height: calc(100vh - 462px);
+}
+
+.tableBody {
+  overflow-y: auto;
+  max-height: calc(100vh - 320px);
+
+}
+
+.tableSpace70 {
+  margin-top: 70px;
+}
+
+.tableSpace50 {
+  margin-top: 50px;
+}
+
+

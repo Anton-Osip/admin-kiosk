@@ -12,7 +12,7 @@ interface Props {
   toggleDefaultLanguage: () => void;
 }
 
-const languages = ['english', 'french', 'spanish', 'japanese'];
+const languages = ['english', 'french', 'spanish', 'japanese', 'belarus '];
 
 export const DefaultLanguage = ({
   defaultLanguage,
