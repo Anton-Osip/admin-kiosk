@@ -80,39 +80,20 @@
   background: rgba(27, 27, 27, 1);
   border-color: transparent;
 
-  &:focus-within {
-    border-color: rgba(195, 255, 0, 0.3);
-    box-shadow: 0 0 0 2px rgba(195, 255, 0, 0.1);
-  }
 }
 
 .secondary {
   background: rgba(39, 39, 39, 1);
   border-color: rgba(75, 85, 99, 0.3);
-
-  &:focus-within {
-    border-color: rgba(195, 255, 0, 0.3);
-    box-shadow: 0 0 0 2px rgba(195, 255, 0, 0.1);
-  }
 }
 
 .ghost {
   background: transparent;
   border-color: rgba(75, 85, 99, 0.5);
-
-  &:focus-within {
-    border-color: rgba(195, 255, 0, 0.3);
-    box-shadow: 0 0 0 2px rgba(195, 255, 0, 0.1);
-  }
 }
 
 .error {
   border-color: #ef4444;
-
-  &:focus-within {
-    border-color: #ef4444;
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-  }
 }
 
 .disabled {
@@ -145,8 +126,12 @@
 }
 
 @keyframes spin {
-  0% { transform: translateY(-50%) rotate(0deg); }
-  100% { transform: translateY(-50%) rotate(360deg); }
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotate(360deg);
+  }
 }
 
 .inputWrapper {
@@ -181,6 +166,7 @@
       margin: 0;
     }
   }
+
   &.dateInput {
     -webkit-appearance: none;
     -moz-appearance: none;
