@@ -1,3 +1,23 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.label {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-tight);
+}
+
+.required {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
 .container {
   width: 100%;
   height: 60px;
@@ -9,12 +29,131 @@
   padding: var(--space-6) var(--space-6) var(--space-6) var(--space-20);
   border-radius: 18px;
   background: rgba(27, 27, 27, 1);
+  border: 2px solid transparent;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+
+  &:focus-within {
+    border-color: rgba(195, 255, 0, 0.3);
+    box-shadow: 0 0 0 2px rgba(195, 255, 0, 0.1);
+  }
 
   & .inputButton {
     height: 48px;
     padding: var(--space-13) var(--space-19);
     border-radius: 14px;
-    background: rgba(39, 39, 39, 1);  }
+    background: rgba(39, 39, 39, 1);
+  }
+}
+
+.sizeSm {
+  height: 48px;
+  padding: var(--space-4) var(--space-4) var(--space-4) var(--space-16);
+  border-radius: 12px;
+
+  & .inputButton {
+    height: 36px;
+    padding: var(--space-8) var(--space-12);
+    border-radius: 10px;
+  }
+}
+
+.sizeMd {
+  height: 60px;
+  padding: var(--space-6) var(--space-6) var(--space-6) var(--space-20);
+  border-radius: 18px;
+}
+
+.sizeLg {
+  height: 68px;
+  padding: var(--space-8) var(--space-8) var(--space-8) var(--space-24);
+  border-radius: 20px;
+
+  & .inputButton {
+    height: 52px;
+    padding: var(--space-16) var(--space-20);
+    border-radius: 16px;
+  }
+}
+
+.primary {
+  background: rgba(27, 27, 27, 1);
+  border-color: transparent;
+
+  &:focus-within {
+    border-color: rgba(195, 255, 0, 0.3);
+    box-shadow: 0 0 0 2px rgba(195, 255, 0, 0.1);
+  }
+}
+
+.secondary {
+  background: rgba(39, 39, 39, 1);
+  border-color: rgba(75, 85, 99, 0.3);
+
+  &:focus-within {
+    border-color: rgba(195, 255, 0, 0.3);
+    box-shadow: 0 0 0 2px rgba(195, 255, 0, 0.1);
+  }
+}
+
+.ghost {
+  background: transparent;
+  border-color: rgba(75, 85, 99, 0.5);
+
+  &:focus-within {
+    border-color: rgba(195, 255, 0, 0.3);
+    box-shadow: 0 0 0 2px rgba(195, 255, 0, 0.1);
+  }
+}
+
+.error {
+  border-color: #ef4444;
+
+  &:focus-within {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  }
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(27, 27, 27, 0.5);
+
+  &:focus-within {
+    border-color: transparent;
+    box-shadow: none;
+  }
+}
+
+.loading {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: var(--space-6);
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid rgba(255, 255, 255, 1);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes spin {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .input {
@@ -33,7 +172,6 @@
     color: rgba(255, 255, 255, 0.4);
   }
 
-  /* Hide number input arrows */
   &[type="number"] {
     -moz-appearance: textfield;
 
@@ -42,6 +180,232 @@
       -webkit-appearance: none;
       margin: 0;
     }
+  }
+  &.dateInput {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right var(--space-12) center;
+    background-size: 24px;
+    padding-right: var(--space-40);
+    color-scheme: dark;
+
+    /* Hide default calendar icon */
+    &::-webkit-calendar-picker-indicator {
+      -webkit-appearance: none;
+      appearance: none;
+      display: none;
+    }
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-clear-button {
+      -webkit-appearance: none;
+      appearance: none;
+      display: none;
+    }
+
+    /* Show placeholder for empty date input */
+    &:invalid {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    &:invalid::-webkit-datetime-edit-text {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    &:invalid::-webkit-datetime-edit-month-field,
+    &:invalid::-webkit-datetime-edit-day-field,
+    &:invalid::-webkit-datetime-edit-year-field {
+      color: rgba(255, 255, 255, 0.4);
+    }
+  }
+
+  .sizeSm & {
+    font-size: var(--text-sm);
+  }
+
+  .sizeMd & {
+    font-size: var(--text-lg);
+  }
+
+  .sizeLg & {
+    font-size: var(--text-xl);
+  }
+}
+
+.leftIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  margin-right: var(--space-2);
+}
+
+.rightIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  margin-left: var(--space-2);
+}
+
+.clearButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 1;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 1);
+  }
+}
+
+.errorText {
+  color: #ef4444;
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-normal);
+}
+
+.helperText {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: var(--text-sm);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-normal);
+}
+
+
+.datePickerWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.calendar {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  margin-top: var(--space-2);
+  background: rgba(27, 27, 27, 1);
+  border: 2px solid rgba(75, 85, 99, 0.3);
+  border-radius: 16px;
+  padding: var(--space-6);
+  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.2s ease-out;
+  min-width: 320px;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.calendarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-6);
+
+  button {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 24px;
+    cursor: pointer;
+    padding: var(--space-3);
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+}
+
+.calendarMonth {
+  color: rgba(255, 255, 255, 1);
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+}
+
+.calendarWeekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.calendarWeekday {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  text-align: center;
+  padding: var(--space-3);
+}
+
+.calendarDays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-2);
+}
+
+.calendarDay {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: var(--text-base);
+  cursor: pointer;
+  padding: var(--space-3);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 1);
+  }
+
+  &.calendarDayOtherMonth {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  &.calendarDayToday {
+    background: rgba(195, 255, 0, 0.2);
+    color: rgba(195, 255, 0, 1);
+    font-weight: var(--font-semibold);
+  }
+
+  &.calendarDaySelected {
+    background: rgba(195, 255, 0, 0.3);
+    color: rgba(0, 0, 0, 1);
+    font-weight: var(--font-semibold);
   }
 }
 

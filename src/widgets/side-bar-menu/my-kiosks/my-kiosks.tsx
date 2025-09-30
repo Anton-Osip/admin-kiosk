@@ -1,5 +1,3 @@
-import { clsx } from 'clsx';
-
 import { Button } from '@/shared';
 import ArrowLeft from '@/shared/assets/arrow-left';
 import Logotype from '@/shared/assets/logotype';
@@ -20,16 +18,12 @@ export const MyKiosks = ({ kiosks }: Props) => {
       </header>
       <Kiosks kiosks={kiosks} />
       <footer className={s.buttons}>
-        <Button className={s.button} variant={'secondary'}>
-          Help
-        </Button>
-        <Button className={s.button} variant={'secondary'}>
-          Contact
-        </Button>
+        <Button variant={'secondary'}>Help</Button>
+        <Button variant={'secondary'}>Contact</Button>
         <Button
           icon={<ArrowLeft />}
           variant={'secondary'}
-          className={clsx(s.fullWidth, s.button)}
+          className={s.fullWidth}
         >
           Back To Menu
         </Button>

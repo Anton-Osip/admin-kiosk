@@ -44,7 +44,9 @@ export const CustomerInputs = () => {
         options={kiosksSelect}
         allowClear={true}
       />
-      <Button />
+      <Button size={'lg'} className={s.submitBtn}>
+        Search
+      </Button>
     </div>
   );
 };

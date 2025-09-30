@@ -14,8 +14,8 @@
   cursor: pointer;
   transition: all 0.2s ease;
   appearance: none;
-  background: rgba(27, 27, 27, 1) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e") no-repeat right var(--space-12) center;
-  background-size: 16px;
+  background: rgba(27, 27, 27, 1) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e") no-repeat right var(--space-12) center;
+  background-size: 24px;
   padding-right: var(--space-40);
 
   &:hover:not(:disabled) {
@@ -25,7 +25,7 @@
 
   &:focus {
     outline: none;
-    border-color: var(--color-accent);
+    border-color: rgba(195, 255, 0, 0.3);
     box-shadow: 0 0 0 2px rgba(195, 255, 0, 0.1);
   }
 
@@ -41,7 +41,7 @@
 }
 
 .selectOpen {
-  border-color: var(--color-accent);
+  border-color: rgba(195, 255, 0, 0.3);
   box-shadow: 0 0 0 2px rgba(195, 255, 0, 0.1);
 }
 
@@ -56,9 +56,10 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-primary);
-  max-height: 200px;
+  max-height: 300px;
   overflow-y: auto;
   animation: slideDown 0.2s ease-out;
+  min-width: 200px;
 }
 
 @keyframes slideDown {
@@ -73,13 +74,16 @@
 }
 
 .option {
-  padding: var(--space-12) var(--space-16);
+  padding: var(--space-16) var(--space-20);
   font-family: var(--font-primary), sans-serif;
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   font-weight: var(--font-medium);
   color: var(--color-text-primary);
   cursor: pointer;
   transition: background-color 0.15s ease;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
 
   &:hover:not([data-disabled]) {
     background-color: var(--color-surface-light);
@@ -112,7 +116,8 @@
 
   &:focus {
     background: var(--color-background-button);
-    border-color: var(--color-accent);
+    border-color: rgba(195, 255, 0, 0.3);
+    box-shadow: 0 0 0 2px rgba(195, 255, 0, 0.1);
   }
 }
 
@@ -130,8 +135,8 @@
   }
 
   &:focus {
-    border-bottom-color: var(--color-accent);
-    box-shadow: none;
+    border-bottom-color: rgba(195, 255, 0, 0.3);
+    box-shadow: 0 0 0 2px rgba(195, 255, 0, 0.1);
   }
 }
 

@@ -3,4 +3,8 @@
   grid-template-columns: repeat(6, 1fr);
   gap: var(--space-8);
   align-items: center;
+
+  & .submitBtn{
+    font-size: var(--text-lg);
+  }
 }

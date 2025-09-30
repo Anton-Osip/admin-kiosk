@@ -33,6 +33,7 @@ export const Tabs = ({ className, items, defaultItem, changeTabs }: Props) => {
     <div className={clsx(s.container, className ?? className)}>
       {items.map((item: Items) => (
         <Button
+          size={'sm'}
           key={item.name}
           className={clsx(
             s.tabsItem,
