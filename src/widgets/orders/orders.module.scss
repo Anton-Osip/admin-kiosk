@@ -33,12 +33,12 @@
 
 .tableBodyAll {
   overflow-y: auto;
-  max-height: calc(100vh - 462px);
+  max-height: calc(100vh - 520px);
 }
 
 .tableBody {
   overflow-y: auto;
-  max-height: calc(100vh - 320px);
+  max-height: calc(100vh - 360px);
 
 }
 
@@ -48,6 +48,37 @@
 
 .tableSpace50 {
   margin-top: 50px;
+}
+
+
+.dateSwitcherWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.dateNavBtn {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.dateBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 

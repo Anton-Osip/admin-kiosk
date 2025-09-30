@@ -31,6 +31,10 @@ export const KioskManagement = ({ kiosk, toggleDefaultLanguage }: Props) => {
     changeStatus(kiosk.id, value as Status);
   };
 
+  const closeAll = () => {
+    closeKioskManagement();
+  };
+
   return (
     <div className={s.wrapper}>
       <div className={s.container}>
@@ -71,7 +75,7 @@ export const KioskManagement = ({ kiosk, toggleDefaultLanguage }: Props) => {
         />
       </div>
 
-      <div className={s.overlay}></div>
+      <div className={s.overlay} onClick={closeAll}></div>
     </div>
   );
 };

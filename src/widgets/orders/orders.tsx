@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
 
+import { DateSwitcher } from '@/shared';
 import { useLocalStore } from '@/shared/lib/local-store';
 import { OrdersForm, TableOrder } from '@/widgets';
 
@@ -29,6 +30,9 @@ export const Orders = () => {
           activeOrdersTab === 'all' ? s.tableSpace70 : s.tableSpace50
         )}
       />
+      {activeOrdersTab === 'all' && (
+        <DateSwitcher className={s.dateSwitcherWrapper} />
+      )}
     </div>
   );
 };
