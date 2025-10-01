@@ -4,7 +4,7 @@
   gap: var(--space-12);
   padding: var(--space-16);
   border-radius: var(--radius-xl);
-  background: #272727;
+  background: var(--color-background-sidemenu3);
 }
 
 .title {
@@ -29,7 +29,7 @@
   height: 61px;
   padding: var(--space-14) var(--space-21);
   border-radius: var(--radius-md);
-  background: #333333;
+  background: var(--color-background-sidemenu3-block);
 }
 
 .character {
@@ -41,7 +41,7 @@
 
 .container .button {
   padding: var(--space-15);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   height: 48px;
   font-size: var(--text-sm);
 }

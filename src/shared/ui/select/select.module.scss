@@ -6,15 +6,15 @@
 
 .select {
   width: 100%;
-  padding: var(--space-22) var(--space-22) var(--space-22) var(--space-20);
+  padding: var(--space-22) ;
   font-size: var(--text-lg);
   font-weight: var(--font-medium);
   color: var(--color-text-primary);
   border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   appearance: none;
-  background: rgba(27, 27, 27, 1) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e") no-repeat right var(--space-12) center;
+  background: var(--color-background-sidemenu2) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e") no-repeat right var(--space-12) center;
   background-size: 24px;
   padding-right: var(--space-40);
 
@@ -50,7 +50,7 @@
   top: 100%;
   left: 0;
   right: 0;
-  z-index: 50;
+  z-index: 25;
   margin-top: var(--space-4);
   background: var(--color-surface);
   border: 1px solid var(--color-border);

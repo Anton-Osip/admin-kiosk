@@ -9,7 +9,7 @@
 }
 
 .container {
-  background: #272727;
+  background: var(--color-background-sidemenu3);
   padding: var(--space-16);
   width: 100%;
   border-radius: var(--radius-xl);
@@ -28,7 +28,7 @@
 }
 
 .message {
-  opacity: 0.8;
+  color: var(--color-text-subtitle);
   font-size: var(--text-base);
   font-weight: var(--font-normal);
   line-height: var(--leading-normal);
@@ -39,5 +39,5 @@
 .clearButton {
   width: 100%;
   height: 48px !important;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
 }

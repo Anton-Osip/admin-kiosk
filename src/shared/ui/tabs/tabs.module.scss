@@ -4,18 +4,22 @@
   align-items: center;
   gap: 2px;
   padding: var(--space-4);
-  border-radius: 18px;
-  background: rgba(27, 27, 27, 1);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-dark);
 
   & .tabsItem {
     width: 100%;
-    padding: 18px 22px 18px 22px;
+    padding: var(--space-18) var(--space-22);
     background: transparent;
   }
 
   & .activeItem {
     background: var(--color-text-primary);
     color: var(--color-background);
+
+    &:hover {
+      color: var(--color-white);
+    }
   }
 }
 

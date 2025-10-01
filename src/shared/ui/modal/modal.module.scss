@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 20px;
+  padding: var(--space-20);
 }
 
 .modalWrapper {
@@ -93,7 +93,7 @@
   }
 
   svg {
-    color: var(--color-text-primary, #FFFFFF);
+    color: var(--color-text-primary, var(--color-white));
   }
 }
 

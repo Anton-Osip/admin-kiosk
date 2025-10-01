@@ -5,9 +5,14 @@
   align-items: center;
   padding: var(--space-8) var(--space-16) var(--space-8) var(--space-8);
   border-radius: var(--radius-xl);
-  background: #1b1b1b;
+  background: var(--color-surface-dark);
   gap: var(--space-12);
   height: 76px;
+  transition: background 0.3s;
+
+  &:hover {
+    background: var(--color-element-bg);
+  }
 
   &:hover .arrow {
     opacity: 1;
@@ -18,15 +23,15 @@
   width: 60px;
 
   .active {
-    color: var(--color-accent) !important;
+    color: var(--color-accent);
   }
 
   .inactive {
-    color: #606060 !important;
+    color: var(--color-inactive);
   }
 
   .error {
-    color: #ff1e00 !important;
+    color: var(--color-error);
   }
 }
 
@@ -50,7 +55,7 @@
     font-weight: var(--font-medium);
     line-height: var(--leading-normal);
     letter-spacing: var(--tracking-tight);
-    color: #606060;
+    color: var(--color-inactive);
 
     &::first-letter {
       text-transform: uppercase;
@@ -81,7 +86,7 @@
     }
 
     &.error {
-      color: #ff1e00;
+      color: var(--color-error);
 
       &::before {
         background-size: cover;

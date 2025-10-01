@@ -3,7 +3,7 @@
   top: 0;
   bottom: 0;
   right: 0;
-  left: 310px;
+  left: var(--container-sidemenu);
 }
 
 .overlay {
@@ -14,20 +14,20 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--color-background-overlay);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100;
+  z-index: var(--z-index-sidemenu-overlay);
   padding: var(--space-20);
 }
 
 .container {
   position: relative;
-  width: 330px;
+  width: var(--container-sidemenu2);
   height: 100%;
-  background: #1b1b1b;
-  z-index: 110;
+  background: var(--color-background-sidemenu2);
+  z-index: var(--z-index-sidemenu2);
   display: flex;
   flex-direction: column;
   padding: var(--space-25) var(--space-15);
@@ -43,9 +43,9 @@
 .titleWrapper {
   display: flex;
   justify-content: space-between;
-  padding: 0 var(--space-10) var(--space-16);
+  padding: var(--space-0) var(--space-10) var(--space-16);
   margin-bottom: var(--space-16);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--color-border-sidemenu);
 
   & .title {
     font-size: var(--text-2xl);
@@ -67,17 +67,17 @@
   }
 
   & .inactive {
-    color: #606060;
+    color: var(--color-inactive);
   }
 
   & .error {
-    color: #ff1e00;
+    color: var(--color-error);
   }
 
   .closeButton {
     padding: 0;
-    width: 28px;
-    height: 28px;
+    width: 36px;
+    height: 36px;
   }
 
 }
@@ -88,8 +88,8 @@
   gap: var(--space-8);
 }
 
-.tabs{
-  background: rgba(39, 39, 39, 1);
+.tabs {
+  background: var(--color-background-sidemenu3);
   width: 100%;
 }
 

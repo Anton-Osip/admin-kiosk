@@ -26,6 +26,7 @@
   --space-48: 48px;
   --space-50: 50px;
   --space-64: 64px;
+  --space-70: 70px;
   --space-96: 96px;
   --space-130: 130px;
 
@@ -40,6 +41,9 @@
   --radius-full: 9999px;
 
   /* Container Sizes */
+  --container-sidemenu: 310px;
+  --container-sidemenu2: 330px;
+  --container-sidemenu3: 330px;
   --container-sm: 640px;
   --container-md: 768px;
   --container-lg: 1024px;
@@ -52,4 +56,11 @@
   --aspect-terminal: 9 / 16;
 
   --after-width: 0;
+
+  /* Z-index */
+  --z-index-orders-summary:75;
+  --z-index-modal-overlay:50;
+  --z-index-sidemenu-overlay:100;
+  --z-index-sidemenu2:150;
+
 }

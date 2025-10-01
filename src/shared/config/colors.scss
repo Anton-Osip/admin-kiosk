@@ -5,47 +5,61 @@
   --color-accent-blue: #26758f;
   --color-white: #fff;
   --color-black: #000;
+  --color-inactive: #606060;
+  --color-error: #ff1e00;
 
   /* Background Colors */
   --color-background: #000;
-  --color-background-sidemenu: #1111;
+  --color-background-overlay: rgba(0, 0, 0, 0.7);
+  --color-background-sidemenu: #111111;
+  --color-background-sidemenu2: #1b1b1b;
+  --color-background-sidemenu3: #272727;
   --color-background-button: #202020;
+  --color-background-sidemenu3-block: #333333;
+  --color-background-sidemenu3-hover: #434343;
+  --color-background-table-row: #636363;
   --color-surface: #161616;
+  --color-surface-dark: #1b1b1b;
+  --color-surface-darker: #2b2b2b;
   --color-surface-light: #1a1a1a;
   --color-surface-lighter: #1c1c1c;
   --color-icon-bg: #3d3d3d;
   --color-element-bg: #232323;
 
+
   /* Text Colors */
   --color-text-primary: #fff;
+  --color-text-subtitle: rgb(255 255 255 / 80%);
   --color-text-secondary: rgb(255 255 255 / 60%);
   --color-text-muted: rgb(255 255 255 / 50%);
   --color-text-disabled: rgb(255 255 255 / 30%);
 
   /* Border Colors */
+  --color-border-sidemenu: rgba(255, 255, 255, 0.05);
+  --color-border-dark: rgba(255, 255, 255, 0.1);
   --color-border: rgb(255 255 255 / 8%);
   --color-border-light: rgb(255 255 255 / 26%);
 
   /* Gradients */
   --gradient-primary: linear-gradient(
-    90deg,
-    rgb(62 62 62 / 0%) 15%,
-    rgb(62 62 62 / 100%) 79%
+                  90deg,
+                  rgb(62 62 62 / 0%) 15%,
+                  rgb(62 62 62 / 100%) 79%
   );
   --gradient-accent: linear-gradient(
-    90deg,
-    rgb(34 39 225 / 100%) 0%,
-    rgb(237 205 247 / 100%) 100%
+                  90deg,
+                  rgb(34 39 225 / 100%) 0%,
+                  rgb(237 205 247 / 100%) 100%
   );
   --gradient-overlay: linear-gradient(
-    180deg,
-    rgb(22 22 22 / 90%) 0%,
-    rgb(22 22 22 / 0%) 100%
+                  180deg,
+                  rgb(22 22 22 / 90%) 0%,
+                  rgb(22 22 22 / 0%) 100%
   );
   --gradient-background: linear-gradient(
-    180deg,
-    rgb(217 217 217 / 80%) 31%,
-    rgb(115 115 115 / 0%) 60%
+                  180deg,
+                  rgb(217 217 217 / 80%) 31%,
+                  rgb(115 115 115 / 0%) 60%
   );
 
   /* Shadows */

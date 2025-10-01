@@ -1,8 +1,8 @@
 .container {
   max-width: 1520px;
-  padding: var(--space-50) var(--space-130) 0;
+  padding: var(--space-50) var(--space-130) var(--space-0);
   @media (max-width: 1780px) {
-    padding: var(--space-50) 0 0;
+    padding: var(--space-50) var(--space-0) var(--space-0);
   }
 }
 
@@ -27,7 +27,7 @@
   letter-spacing: var(--tracking-tight);
 
   & span {
-    opacity: 0.5;
+    color: var(--color-text-muted);
   }
 }
 
@@ -39,46 +39,18 @@
 .tableBody {
   overflow-y: auto;
   max-height: calc(100vh - 360px);
-
 }
 
 .tableSpace70 {
-  margin-top: 70px;
+  margin-top: var(--space-70);
 }
 
 .tableSpace50 {
-  margin-top: 50px;
+  margin-top: var(--space-50);
 }
-
 
 .dateSwitcherWrapper {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 25px;
-}
-
-.dateNavBtn {
-  width: 32px;
-  height: 32px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.rotate {
-  transform: rotate(180deg);
-}
-
-.dateBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.08);
+  margin-top: var(--space-25);
 }
 
 

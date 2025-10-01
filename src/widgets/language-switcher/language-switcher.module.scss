@@ -5,11 +5,12 @@
   gap: var(--space-12);
   padding: var(--space-16);
   border-radius: var(--radius-xl);
-  background: #272727;
+  background: var(--color-background-sidemenu3);
   cursor: pointer;
-  transition:background 0.3s ;
-  &:hover{
-    background: var(--color-border);
+  transition: background 0.3s;
+
+  &:hover {
+    background: var(--color-background-sidemenu3-hover);
   }
 }
 
@@ -36,5 +37,4 @@
 
 .arrow {
   transform: rotate(180deg);
-
 }
