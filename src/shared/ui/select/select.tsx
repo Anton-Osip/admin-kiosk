@@ -1,12 +1,7 @@
 'use client';
 
 import { clsx } from 'clsx';
-import React, {
-  ComponentPropsWithoutRef,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { ComponentPropsWithoutRef, useEffect, useRef, useState } from 'react';
 
 import styles from './select.module.scss';
 

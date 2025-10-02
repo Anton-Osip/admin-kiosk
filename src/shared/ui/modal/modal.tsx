@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/shared';
+import { Button } from '@/shared/ui';
 
 import styles from './modal.module.scss';
 
