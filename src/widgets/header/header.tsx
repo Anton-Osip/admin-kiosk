@@ -1,7 +1,7 @@
 'use client';
 
-import { Input, Tabs } from '@/shared';
-import { OrdersTab, useLocalStore } from '@/shared/lib/local-store';
+import { OrdersTab, useLocalStore } from '@/shared/lib';
+import { Input, Tabs } from '@/shared/ui';
 import { OrdersSummary } from '@/widgets';
 
 import s from './header.module.scss';

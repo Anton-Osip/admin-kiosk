@@ -1,8 +1,7 @@
 import { clsx } from 'clsx';
 
-import { DateSwitcher } from '@/shared';
-import { useLocalStore } from '@/shared/lib/local-store';
-import { useOrdersStore } from '@/shared/lib/oreders-store';
+import { useLocalStore, useOrdersStore } from '@/shared/lib';
+import { DateSwitcher } from '@/shared/ui';
 import { ModalOrder, OrdersForm, TableOrder } from '@/widgets';
 
 import s from './orders.module.scss';

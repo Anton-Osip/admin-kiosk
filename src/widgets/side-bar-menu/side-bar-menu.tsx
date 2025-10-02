@@ -1,10 +1,10 @@
 'use client';
 
-import { useKiosksStore } from '@/shared/lib/kiosks-store';
-import { DefaultLanguage } from '@/widgets/side-bar-menu/default-language/default-language';
-import { KioskManagement } from '@/widgets/side-bar-menu/kiosk-management/kiosk-management';
-import { MyKiosks } from '@/widgets/side-bar-menu/my-kiosks/my-kiosks';
+import { useKiosksStore } from '@/shared/lib';
 
+import { DefaultLanguage } from './default-language/default-language';
+import { KioskManagement } from './kiosk-management/kiosk-management';
+import { MyKiosks } from './my-kiosks/my-kiosks';
 import s from './side-bar-menu.module.scss';
 
 export const SideBarMenu = () => {

@@ -1,9 +1,9 @@
 import { clsx } from 'clsx';
 import Image from 'next/image';
 
-import { Button, Modal } from '@/shared';
 import PrintIcon from '@/shared/assets/print-icon';
-import { OrdersData, useOrdersStore } from '@/shared/lib/oreders-store';
+import { OrdersData, useOrdersStore } from '@/shared/lib';
+import { Button, Modal } from '@/shared/ui';
 
 import image from '../../../public/img.png';
 import s from './modal-order.module.scss';

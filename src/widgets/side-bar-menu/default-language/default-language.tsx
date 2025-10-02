@@ -1,8 +1,8 @@
 import { clsx } from 'clsx';
 
-import { Button } from '@/shared';
 import ArrowLeft from '@/shared/assets/arrow-left';
 import CheckIcon from '@/shared/assets/check-icon';
+import { Button } from '@/shared/ui';
 
 import s from './default-language.module.scss';
 

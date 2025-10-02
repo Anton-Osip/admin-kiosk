@@ -1,9 +1,9 @@
 import { clsx } from 'clsx';
 
-import { IconContainer } from '@/shared';
 import ArrowLeft from '@/shared/assets/arrow-left';
 import KioskIcon from '@/shared/assets/kiosk-icon';
-import { KiosksData, useKiosksStore } from '@/shared/lib/kiosks-store';
+import { KiosksData, useKiosksStore } from '@/shared/lib';
+import { IconContainer } from '@/shared/ui';
 
 import s from './kiosk.module.scss';
 

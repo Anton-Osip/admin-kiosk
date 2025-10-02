@@ -1,6 +1,7 @@
 export { CodeGenerator } from './code-generator/code-generator';
 export { ErrorBanners } from './error-banners/error-banners';
 export { Header } from './header/header';
+export { Kiosks } from './kiosks/kiosks';
 export { LanguageSwitcher } from './language-switcher/language-switcher';
 export { ModalOrder } from './modal-order/modal-order';
 export { Orders } from './orders/orders';

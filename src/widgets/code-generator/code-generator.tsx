@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Button } from '@/shared';
+import { Button } from '@/shared/ui';
 
 import s from './code-generator.module.scss';
 

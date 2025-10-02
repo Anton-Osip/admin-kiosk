@@ -1,4 +1,4 @@
-import { Button, Input, Select } from '@/shared';
+import { Button, Input, Select } from '@/shared/ui';
 
 import s from './orders-form.module.scss';
 

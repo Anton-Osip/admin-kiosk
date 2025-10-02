@@ -11,8 +11,8 @@ import {
   useState,
 } from 'react';
 
-import { Button } from '@/shared';
 import SendIcon from '@/shared/assets/send-icon';
+import { Button } from '@/shared/ui';
 
 import { DatePicker } from './date-picker';
 import s from './input.module.scss';

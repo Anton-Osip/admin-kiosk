@@ -1,6 +1,7 @@
 import { clsx } from 'clsx';
 import Image from 'next/image';
 
+import { useOrdersStore } from '@/shared/lib';
 import {
   Table,
   TableBody,
@@ -8,8 +9,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/shared';
-import { useOrdersStore } from '@/shared/lib/oreders-store';
+} from '@/shared/ui';
 
 import s from './table-order.module.scss';
 

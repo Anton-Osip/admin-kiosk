@@ -1,4 +1,4 @@
-import { KiosksData } from '@/shared/lib/kiosks-store';
+import { KiosksData } from '@/shared/lib';
 import { Kiosk } from '@/widgets/kiosks/kiosk/kiosk';
 
 import s from './kiosks.module.scss';

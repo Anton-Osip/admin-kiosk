@@ -1,8 +1,8 @@
-import { Button } from '@/shared';
 import ArrowLeft from '@/shared/assets/arrow-left';
 import Logotype from '@/shared/assets/logotype';
-import { KiosksData } from '@/shared/lib/kiosks-store';
-import { Kiosks } from '@/widgets/kiosks/kiosks';
+import { KiosksData } from '@/shared/lib';
+import { Button } from '@/shared/ui';
+import { Kiosks } from '@/widgets';
 
 import s from './my-kiosks.module.scss';
 

@@ -1,6 +1,6 @@
-import { Button } from '@/shared';
 import ErrorIcon from '@/shared/assets/error-icon';
-import { ErrorData } from '@/shared/lib/kiosks-store';
+import { ErrorData } from '@/shared/lib';
+import { Button } from '@/shared/ui';
 
 import s from './error-banners.module.scss';
 

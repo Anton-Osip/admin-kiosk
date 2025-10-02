@@ -3,7 +3,7 @@
 import { clsx } from 'clsx';
 import { useState } from 'react';
 
-import { Button } from '@/shared';
+import { Button } from '@/shared/ui';
 
 import s from './tabs.module.scss';
 

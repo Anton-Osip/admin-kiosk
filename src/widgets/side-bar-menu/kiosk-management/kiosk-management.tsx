@@ -1,8 +1,8 @@
 import { clsx } from 'clsx';
 
-import { Button, Tabs } from '@/shared';
 import ArrowLeft from '@/shared/assets/arrow-left';
-import { KiosksData, Status, useKiosksStore } from '@/shared/lib/kiosks-store';
+import { KiosksData, Status, useKiosksStore } from '@/shared/lib';
+import { Button, Tabs } from '@/shared/ui';
 import { CodeGenerator, ErrorBanners, LanguageSwitcher } from '@/widgets';
 
 import s from './kiosk-management.module.scss';
