@@ -18,9 +18,10 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-lg);
-  transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
   cursor: pointer;
   outline: none;
+  opacity: .5;
 
   &:hover {
     opacity: 1;
