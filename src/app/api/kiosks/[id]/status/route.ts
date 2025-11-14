@@ -68,6 +68,7 @@ export async function POST(
 ) {
   const { id } = await params;
   const body = await request.json();
+
   return proxyRequest(request, `/kiosks/${id}/status`, 'POST', body);
 }
 

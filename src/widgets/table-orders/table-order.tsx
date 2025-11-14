@@ -40,12 +40,24 @@ export const TableOrder = ({ className, tableBodyClassName }: Props) => {
       </TableHeader>
       <TableBody className={clsx(tableBodyClassName ?? tableBodyClassName)}>
         {ordersData.map(o => (
-          <TableRow key={o.number} onClick={() => setSelectedHandler(o.number)}>
+          <TableRow key={o.id} onClick={() => setSelectedHandler(o.number)}>
             <TableCell>
               <span className={s.symbol}>№</span> {o.number}
             </TableCell>
             <TableCell className={s.imageCeil}>
-              <Image src={o.imageURL} alt={'image'} width={60} height={60} />
+              <Image 
+                src={o.imageURL} 
+                alt={'image'} 
+                width={60} 
+                height={60}
+                unoptimized
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  if (typeof o.imageURL === 'string') {
+                    target.src = '/orderImage.png';
+                  }
+                }}
+              />
             </TableCell>
             <TableCell>{o.name}</TableCell>
             <TableCell>{o.phoneNumber}</TableCell>

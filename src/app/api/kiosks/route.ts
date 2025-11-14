@@ -56,6 +56,7 @@ async function proxyRequest(
     });
   } catch (error) {
     console.error('[KiosksRoute] Ошибка проксирования:', error);
+
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

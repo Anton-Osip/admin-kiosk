@@ -9,7 +9,7 @@ import s from './page.module.scss';
 
 export default function Home() {
   const { isAuthenticated, isLoading, login } = useAuthStore();
-  const { fetchKiosks, kiosksData } = useKiosksStore();
+  const { fetchKiosks } = useKiosksStore();
   const hasTriedLogin = useRef(false);
   const hasFetchedKiosks = useRef(false);
 

@@ -2,7 +2,7 @@ import { clsx } from 'clsx';
 import Image from 'next/image';
 
 import PrintIcon from '@/shared/assets/print-icon';
-import { OrdersData, useOrdersStore } from '@/shared/lib';
+import { OrdersData, useLocalStore, useOrdersStore } from '@/shared/lib';
 import { Button, Modal } from '@/shared/ui';
 
 import image from '../../../public/img.png';
@@ -13,9 +13,24 @@ interface Props {
 }
 
 export const ModalOrder = ({ order }: Props) => {
-  const { setSelected } = useOrdersStore();
+  const { activeOrdersTab } = useLocalStore();
+  const { setSelected, markOrderAsPrinted, fetchNewOrders } = useOrdersStore();
   const setSelectedHandler = () => {
     setSelected(order.number);
+  };
+
+  const handleMarkAsPrinted = async () => {
+    await markOrderAsPrinted(order.id, 'printed');
+    if (activeOrdersTab === 'new') {
+      await fetchNewOrders();
+    }
+  };
+
+  const handleMarkAsNotPrinted = async () => {
+    await markOrderAsPrinted(order.id, 'not_printed');
+    if (activeOrdersTab === 'new') {
+      await fetchNewOrders();
+    }
   };
 
   return (
@@ -55,14 +70,24 @@ export const ModalOrder = ({ order }: Props) => {
           </div>
         </div>
         <div className={s.imageBox}>
-          <Image src={image} alt={'image'} width={476} height={476} />
+          <Image 
+            src={typeof order.imageURL === 'string' ? order.imageURL : image} 
+            alt={'image'} 
+            width={476} 
+            height={476}
+            unoptimized
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = image.src;
+            }}
+          />
         </div>
         <div className={s.container}>
           <Button
             variant="close"
             size="lg"
             className={s.closeBtn}
-            onClick={setSelectedHandler}
+            onClick={handleMarkAsNotPrinted}
           >
             Not Printed
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -78,7 +103,12 @@ export const ModalOrder = ({ order }: Props) => {
           <div className={s.print}>
             <PrintIcon />
           </div>
-          <Button variant="primary" size="lg" className={s.printedBtn}>
+          <Button 
+            variant="primary" 
+            size="lg" 
+            className={s.printedBtn}
+            onClick={handleMarkAsPrinted}
+          >
             Printed
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path

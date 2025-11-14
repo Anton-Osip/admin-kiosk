@@ -2,7 +2,7 @@
 
 import { create } from 'zustand';
 
-import { kiosksAPI, KioskErrorResponse, KioskResponse } from '@/shared/api';
+import { KioskErrorResponse, KioskResponse,kiosksAPI } from '@/shared/api';
 
 interface ModalStore {
   kiosksData: KiosksData[];
@@ -46,6 +46,7 @@ const mapKioskResponseToKiosksData = (
     if (status === 'active' || status === 'inactive' || status === 'error') {
       return status as Status;
     }
+
     return 'inactive';
   };
 
@@ -155,6 +156,7 @@ export const useKiosksStore = create<ModalStore>((set, get) => ({
       const currentKiosks = get().kiosksData;
       const mappedKiosks = kiosks.map(kiosk => {
         const existingKiosk = currentKiosks.find(k => k.id === kiosk.id);
+
         return mapKioskResponseToKiosksData(kiosk, existingKiosk);
       });
 
@@ -176,6 +178,7 @@ export const useKiosksStore = create<ModalStore>((set, get) => ({
         if (kiosk.id === kioskId) {
           return { ...kiosk, status };
         }
+
         return kiosk;
       }),
     }));
@@ -189,8 +192,10 @@ export const useKiosksStore = create<ModalStore>((set, get) => ({
           kiosksData: state.kiosksData.map(kiosk => {
             if (kiosk.id === kioskId) {
               const existingKiosk = state.kiosksData.find(k => k.id === kioskId);
+
               return mapKioskResponseToKiosksData(updatedKiosk, existingKiosk);
             }
+
             return kiosk;
           }),
         }));
@@ -206,6 +211,7 @@ export const useKiosksStore = create<ModalStore>((set, get) => ({
         if (kiosk.id === kioskId) {
           return { ...kiosk, defaultLanguage: language };
         }
+
         return kiosk;
       }),
     }));
@@ -229,8 +235,10 @@ export const useKiosksStore = create<ModalStore>((set, get) => ({
           kiosksData: state.kiosksData.map(kiosk => {
             if (kiosk.id === kioskId) {
               const existingKiosk = state.kiosksData.find(k => k.id === kioskId);
+
               return mapKioskResponseToKiosksData(updatedKiosk, existingKiosk);
             }
+
             return kiosk;
           }),
         }));
@@ -251,8 +259,10 @@ export const useKiosksStore = create<ModalStore>((set, get) => ({
             if (kiosk.id === kioskId) {
               const existingKiosk = state.kiosksData.find(k => k.id === kioskId);
               const mapped = mapKioskResponseToKiosksData(updatedKiosk, existingKiosk);
+
               return { ...mapped, error: undefined };
             }
+
             return kiosk;
           }),
         }));
@@ -275,6 +285,7 @@ export const useKiosksStore = create<ModalStore>((set, get) => ({
               error: mapKioskErrorsToErrorData(errors),
             };
           }
+
           return kiosk;
         }),
       }));

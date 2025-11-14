@@ -57,6 +57,7 @@ export const kiosksAPI = {
   // GET /partner/kiosks/:id/errors - получить ошибки киоска
   getKioskErrors(id: string, params?: GetKioskErrorsParams) {
     const queryParams = params?.limit ? `?limit=${params.limit}` : '';
+
     return instance.get<BaseResponse<KioskErrorResponse[]>>(
       `kiosks/${id}/errors${queryParams}`
     );
@@ -86,6 +87,7 @@ export const kiosksAPI = {
             } as BaseResponse<GenerateCodeResponse>,
           };
         }
+
         return response as { data: BaseResponse<GenerateCodeResponse>; status: number };
       },
       (error) => {

@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { BACKEND_URL } from '@/shared/lib/constants';
 
-// Вспомогательная функция для проксирования запросов
 async function proxyRequest(
   request: NextRequest,
   backendPath: string,
@@ -11,6 +10,7 @@ async function proxyRequest(
 ) {
   try {
     const cookieHeader = request.headers.get('cookie') || '';
+    const backendUrl = `${BACKEND_URL}/partner${backendPath}`;
 
     const requestHeaders: HeadersInit = {
       'Content-Type': 'application/json',
@@ -31,8 +31,8 @@ async function proxyRequest(
       fetchOptions.body = JSON.stringify(body);
     }
 
-    const response = await fetch(`${BACKEND_URL}/partner${backendPath}`, fetchOptions);
-    
+    const response = await fetch(backendUrl, fetchOptions);
+
     const responseText = await response.text();
     const data = responseText.trim() 
       ? JSON.parse(responseText) 
@@ -62,14 +62,8 @@ async function proxyRequest(
   }
 }
 
-export async function POST(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  const { id } = await params;
-  const body = await request.json();
-
-  return proxyRequest(request, `/kiosks/${id}/language`, 'POST', body);
+export async function GET(request: NextRequest) {
+  return proxyRequest(request, '/orders/daily-counters', 'GET');
 }
 
 export async function OPTIONS() {
@@ -77,8 +71,9 @@ export async function OPTIONS() {
     status: 200,
     headers: {
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Methods': 'GET, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Credentials': 'true',
     },
   });
 }

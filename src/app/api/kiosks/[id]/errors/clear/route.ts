@@ -67,6 +67,7 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
+
   return proxyRequest(request, `/kiosks/${id}/errors/clear`, 'POST');
 }
 

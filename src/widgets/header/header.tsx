@@ -30,7 +30,7 @@ export function Header() {
   };
 
   const changeOrdersNumberHandler = (value: string) => {
-    changeOrderNumber(Number(value));
+    changeOrderNumber(value ? Number(value) : undefined);
   };
 
   const changeCustomerDetailsHandler = (value: string) => {
