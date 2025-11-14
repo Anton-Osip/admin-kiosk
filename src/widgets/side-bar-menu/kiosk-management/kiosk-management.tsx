@@ -18,7 +18,7 @@ const tabsItem = [
 ];
 
 export const KioskManagement = ({ kiosk, toggleDefaultLanguage }: Props) => {
-  const { setSelectedKiosk, clearError, changeStatus } = useKiosksStore();
+  const { setSelectedKiosk, clearError, updateKioskStatus } = useKiosksStore();
 
   const closeKioskManagement = () => {
     setSelectedKiosk(kiosk.id);
@@ -28,7 +28,7 @@ export const KioskManagement = ({ kiosk, toggleDefaultLanguage }: Props) => {
     clearError(kiosk.id, errorId);
   };
   const changeStatusHandler = (value: string) => {
-    changeStatus(kiosk.id, value as Status);
+    updateKioskStatus(kiosk.id, value as Status);
   };
 
   const closeAll = () => {
@@ -70,7 +70,7 @@ export const KioskManagement = ({ kiosk, toggleDefaultLanguage }: Props) => {
         <Tabs
           className={s.tabs}
           items={tabsItem}
-          defaultItem={kiosk.status}
+          defaultItem={kiosk.status === 'error' ? 'inactive' : kiosk.status}
           changeTabs={changeStatusHandler}
         />
       </div>

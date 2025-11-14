@@ -9,7 +9,6 @@ export const instance = axios.create({
 });
 
 
-// Interceptor для логирования ответов
 instance.interceptors.response.use(
   (response) => {
     return response;

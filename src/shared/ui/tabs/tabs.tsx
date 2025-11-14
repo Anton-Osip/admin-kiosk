@@ -1,7 +1,7 @@
 'use client';
 
 import { clsx } from 'clsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Button } from '@/shared/ui';
 
@@ -23,6 +23,12 @@ export const Tabs = ({ className, items, defaultItem, changeTabs }: Props) => {
   const [currentItem, setCurrentItem] = useState<string>(
     defaultItem || items[0].name
   );
+
+  useEffect(() => {
+    if (defaultItem) {
+      setCurrentItem(defaultItem);
+    }
+  }, [defaultItem]);
 
   const switchCurrentItem = (name: string) => {
     setCurrentItem(name);

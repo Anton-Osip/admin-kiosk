@@ -10,14 +10,16 @@ import s from './side-bar-menu.module.scss';
 export const SideBarMenu = () => {
   const {
     kiosksData,
-    changeLanguage,
+    updateKioskLanguage,
     setDefaultLanguageIsOpen,
     defaultLanguageIsOpen,
   } = useKiosksStore();
   const selectedKiosk = kiosksData.filter(k => k.isSelected);
 
   const changeLanguageHandler = (language: string) => {
-    changeLanguage(selectedKiosk[0].id, language);
+    if (selectedKiosk[0]) {
+      updateKioskLanguage(selectedKiosk[0].id, language);
+    }
   };
 
   const toggleDefaultLanguage = () => {

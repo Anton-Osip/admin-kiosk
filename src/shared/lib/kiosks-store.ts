@@ -2,14 +2,22 @@
 
 import { create } from 'zustand';
 
+import { kiosksAPI, KioskErrorResponse, KioskResponse } from '@/shared/api';
+
 interface ModalStore {
   kiosksData: KiosksData[];
+  isLoading: boolean;
   defaultLanguageIsOpen: boolean;
   setDefaultLanguageIsOpen: (value?: boolean) => void;
   setSelectedKiosk: (kioskID: string) => void;
-  clearError: (kioskId: string, errorId: string) => void;
+  clearError: (kioskId: string, errorId: string) => Promise<void>;
   changeLanguage: (kioskId: string, language: string) => void;
   changeStatus: (kioskId: string, status: Status) => void;
+  fetchKiosks: () => Promise<void>;
+  updateKioskStatus: (kioskId: string, status: Status) => Promise<void>;
+  updateKioskLanguage: (kioskId: string, language: string) => Promise<void>;
+  clearKioskError: (kioskId: string) => Promise<void>;
+  fetchKioskErrors: (kioskId: string) => Promise<void>;
 }
 
 export interface ErrorData {
@@ -29,54 +37,58 @@ export interface KiosksData {
 
 export type Status = 'active' | 'inactive' | 'error';
 
-export const useKiosksStore = create<ModalStore>(set => ({
-  kiosksData: [
-    {
-      id: 'Kiosk №1',
-      name: 'Kiosk №1',
-      status: 'active',
-      isSelected: false,
-      defaultLanguage: 'english',
-    },
-    {
-      id: 'Kiosk №2',
-      name: 'Kiosk №2',
-      status: 'active',
-      isSelected: false,
-      defaultLanguage: 'english',
-    },
-    {
-      id: 'Kiosk №3',
-      name: 'Kiosk №3',
-      status: 'inactive',
-      isSelected: false,
-      defaultLanguage: 'english',
-    },
-    {
-      id: 'Kiosk №4',
-      name: 'Kiosk №4',
-      status: 'error',
-      isSelected: false,
-      defaultLanguage: 'english',
-      error: [
-        {
-          id: 'error 1',
-          message: 'Невозможно продолжить работу',
-          title: 'Error B1',
-        },
-        {
-          id: 'error 2',
-          message: 'Невозможно продолжить работу',
-          title: 'Error B2',
-        },
-        {
-          id: 'error 3',
-          message: 'Невозможно продолжить работу',
-          title: 'Error B3',
-        },
-      ],
-    },
-  ],
+const mapKioskResponseToKiosksData = (
+  kiosk: KioskResponse,
+  existingKiosk?: KiosksData
+): KiosksData => {
+  const mapStatus = (status: string): Status => {
+    if (status === 'working') return 'active';
+    if (status === 'active' || status === 'inactive' || status === 'error') {
+      return status as Status;
+    }
+    return 'inactive';
+  };
+
+  const getLanguage = (): string => {
+    const backendLanguage = kiosk.defaultLanguage || 
+                             kiosk.settings?.defaultLanguage || 
+                             existingKiosk?.defaultLanguage || 
+                             'en';
+    
+    const languageMap: Record<string, string> = {
+      'en': 'english',
+      'fr': 'french',
+      'es': 'spanish',
+      'ja': 'japanese',
+      'be': 'belarus ',
+    };
+    
+    return languageMap[backendLanguage.toLowerCase()] || backendLanguage;
+  };
+
+  return {
+    id: kiosk.id,
+    name: kiosk.name,
+    status: mapStatus(kiosk.status),
+    isSelected: existingKiosk?.isSelected ?? false,
+    defaultLanguage: getLanguage(),
+    error: existingKiosk?.error,
+  };
+};
+
+const mapKioskErrorsToErrorData = (
+  errors: KioskErrorResponse[]
+): ErrorData[] => {
+  return errors.map((error, index) => ({
+    id: error.id || `error-${index}`,
+    message: error.message,
+    title: error.code || `Error ${index + 1}`,
+  }));
+};
+
+export const useKiosksStore = create<ModalStore>((set, get) => ({
+  kiosksData: [],
+  isLoading: false,
   defaultLanguageIsOpen: false,
 
   setSelectedKiosk: (kioskId: string) => {
@@ -89,7 +101,7 @@ export const useKiosksStore = create<ModalStore>(set => ({
     }));
   },
 
-  clearError: (kioskId: string, errorId: string) => {
+  clearError: async (kioskId: string, errorId: string) => {
     set(state => ({
       kiosksData: state.kiosksData.map(kiosk => {
         if (kiosk.id === kioskId && kiosk.error) {
@@ -107,6 +119,11 @@ export const useKiosksStore = create<ModalStore>(set => ({
         return kiosk;
       }),
     }));
+
+    const kiosk = get().kiosksData.find(k => k.id === kioskId);
+    if (kiosk && kiosk.error && kiosk.error.length === 1) {
+      await get().clearKioskError(kioskId);
+    }
   },
   changeLanguage: (kioskId: string, language: string) => {
     set(state => ({
@@ -127,5 +144,142 @@ export const useKiosksStore = create<ModalStore>(set => ({
   },
   setDefaultLanguageIsOpen: value => {
     set({ defaultLanguageIsOpen: value });
+  },
+
+  fetchKiosks: async () => {
+    try {
+      set({ isLoading: true });
+      const response = await kiosksAPI.getKiosks();
+      const kiosks = response.data?.data || [];
+
+      const currentKiosks = get().kiosksData;
+      const mappedKiosks = kiosks.map(kiosk => {
+        const existingKiosk = currentKiosks.find(k => k.id === kiosk.id);
+        return mapKioskResponseToKiosksData(kiosk, existingKiosk);
+      });
+
+      set({ kiosksData: mappedKiosks, isLoading: false });
+
+      for (const kiosk of mappedKiosks) {
+        if (kiosk.status === 'error') {
+          await get().fetchKioskErrors(kiosk.id);
+        }
+      }
+    } catch {
+      set({ isLoading: false });
+    }
+  },
+
+  updateKioskStatus: async (kioskId: string, status: Status) => {
+    set(state => ({
+      kiosksData: state.kiosksData.map(kiosk => {
+        if (kiosk.id === kioskId) {
+          return { ...kiosk, status };
+        }
+        return kiosk;
+      }),
+    }));
+
+    try {
+      const response = await kiosksAPI.changeStatus(kioskId, { status });
+      const updatedKiosk = response.data?.data;
+
+      if (updatedKiosk) {
+        set(state => ({
+          kiosksData: state.kiosksData.map(kiosk => {
+            if (kiosk.id === kioskId) {
+              const existingKiosk = state.kiosksData.find(k => k.id === kioskId);
+              return mapKioskResponseToKiosksData(updatedKiosk, existingKiosk);
+            }
+            return kiosk;
+          }),
+        }));
+      }
+    } catch {
+      // ignore
+    }
+  },
+
+  updateKioskLanguage: async (kioskId: string, language: string) => {
+    set(state => ({
+      kiosksData: state.kiosksData.map(kiosk => {
+        if (kiosk.id === kioskId) {
+          return { ...kiosk, defaultLanguage: language };
+        }
+        return kiosk;
+      }),
+    }));
+
+    try {
+      const languageMap: Record<string, string> = {
+        'english': 'en',
+        'french': 'fr',
+        'spanish': 'es',
+        'japanese': 'ja',
+        'belarus ': 'be',
+      };
+      
+      const backendLanguage = languageMap[language.toLowerCase()] || language;
+      
+      const response = await kiosksAPI.changeLanguage(kioskId, { language: backendLanguage });
+      const updatedKiosk = response.data?.data;
+
+      if (updatedKiosk) {
+        set(state => ({
+          kiosksData: state.kiosksData.map(kiosk => {
+            if (kiosk.id === kioskId) {
+              const existingKiosk = state.kiosksData.find(k => k.id === kioskId);
+              return mapKioskResponseToKiosksData(updatedKiosk, existingKiosk);
+            }
+            return kiosk;
+          }),
+        }));
+      }
+    } catch {
+      // ignore
+    }
+  },
+
+  clearKioskError: async (kioskId: string) => {
+    try {
+      const response = await kiosksAPI.clearError(kioskId);
+      const updatedKiosk = response.data?.data;
+
+      if (updatedKiosk) {
+        set(state => ({
+          kiosksData: state.kiosksData.map(kiosk => {
+            if (kiosk.id === kioskId) {
+              const existingKiosk = state.kiosksData.find(k => k.id === kioskId);
+              const mapped = mapKioskResponseToKiosksData(updatedKiosk, existingKiosk);
+              return { ...mapped, error: undefined };
+            }
+            return kiosk;
+          }),
+        }));
+      }
+    } catch {
+      // ignore
+    }
+  },
+
+  fetchKioskErrors: async (kioskId: string) => {
+    try {
+      const response = await kiosksAPI.getKioskErrors(kioskId, { limit: 10 });
+      const errors = response.data?.data || [];
+
+      set(state => ({
+        kiosksData: state.kiosksData.map(kiosk => {
+          if (kiosk.id === kioskId) {
+            return {
+              ...kiosk,
+              error: mapKioskErrorsToErrorData(errors),
+            };
+          }
+          return kiosk;
+        }),
+      }));
+    } catch {
+      // ignore
+    }
   },
 }));

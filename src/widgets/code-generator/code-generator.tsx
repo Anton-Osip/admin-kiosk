@@ -1,25 +1,42 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
+import { useKiosksStore } from '@/shared/lib';
 import { Button } from '@/shared/ui';
 
 import s from './code-generator.module.scss';
 
 export const CodeGenerator = () => {
-  const [code, setCode] = useState<number>(4444);
+  const [code, setCode] = useState<string>('----');
+  const { kiosksData } = useKiosksStore();
+  const selectedKiosk = kiosksData.find(k => k.isSelected);
 
-  const issueACode = () => {
-    const min = 1000;
-    const max = 9999;
-    setCode(Math.floor(Math.random() * (max - min + 1)) + min);
+  useEffect(() => {
+    setCode('----');
+  }, [selectedKiosk?.id]);
+
+  const issueACode = async () => {
+    if (!selectedKiosk) return;
+
+    try {
+      const { kiosksAPI } = await import('@/shared/api');
+      const response = await kiosksAPI.generateCode(selectedKiosk.id);
+      const codeData = response.data?.data;
+      
+      if (codeData?.code) {
+        setCode(codeData.code);
+      }
+    } catch {
+      // ignore
+    }
   };
 
   return (
     <div className={s.container}>
       <p className={s.title}>Code generator</p>
       <div className={s.code}>
-        {String(code)
+        {code
           .split('')
           .map((item, index) => (
             <div key={index} className={s.number}>
