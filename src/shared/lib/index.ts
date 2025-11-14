@@ -1,3 +1,5 @@
+export { useAuthStore } from './auth-store';
+export { BACKEND_URL, MOCK_AUTH_CREDENTIALS, MOCK_KIOSK_ID } from './constants';
 export type { ErrorData, KiosksData, Status } from './kiosks-store';
 export { useKiosksStore } from './kiosks-store';
 export type { LocalStore, OrdersTab } from './local-store';
